@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">My Application</string>
+    <string name="txt_hint_password">Password</string>
+    <string name="txt_hint_username">Username</string>
+    <string name="txt_btn_login">login</string>
+    <string name="app_shared_prefs">sidarta.myapplication.APP_SHARED_PREFS</string>
 </resources>
