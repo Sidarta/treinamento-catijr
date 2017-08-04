@@ -65,8 +65,8 @@ public class MainActivity extends AppCompatActivity {
                             mSharedPrefs.edit().putString("auth", authHeader).apply();
 
                             //new intent
-//                            Intent intent = new Intent(mContext, ListProjectsActivity.class);
-//                            startActivity(intent);
+                            Intent intent = new Intent(mContext, FollowersListActivity.class);
+                            startActivity(intent);
 
                         } else {
                             try {
