@@ -18,6 +18,8 @@ import com.example.sidarta.myapplication.domain.model.User;
 import java.io.IOException;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -26,7 +28,8 @@ public class FollowersListActivity extends AppCompatActivity {
 
     private static final String TAG = FollowersListActivity.class.getSimpleName();
 
-    private RecyclerView mFollowersList;
+    @BindView(R.id.rvFollowersList) RecyclerView mFollowersList;
+
     private RecyclerView.Adapter mAdapter;
 
     private GitHubAPI mGitHubAPI;
@@ -38,10 +41,11 @@ public class FollowersListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_followers_list);
 
+        ButterKnife.bind(this);
+
         mGitHubAPI = GitHubAPI.RETROFIT.create(GitHubAPI.class);
         mContext = this;
 
-        mFollowersList = findViewById(R.id.rvFollowersList);
         mFollowersList.setLayoutManager(new LinearLayoutManager(this));
         mFollowersList.setHasFixedSize(true);
 

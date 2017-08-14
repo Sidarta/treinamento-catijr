@@ -16,6 +16,9 @@ import com.example.sidarta.myapplication.domain.model.User;
 
 import java.io.IOException;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import okhttp3.Credentials;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -26,9 +29,9 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = MainActivity.class.getSimpleName();
 
-    TextInputLayout mTilUsername;
-    TextInputLayout mTilPassword;
-    Button mBtnLogin;
+    @BindView(R.id.tilUsername) TextInputLayout mTilUsername;
+    @BindView(R.id.tilPassword) TextInputLayout mTilPassword;
+    @BindView(R.id.btnLogin) Button mBtnLogin;
 
     private GitHubAPI mGitHubAPI;
     private SharedPreferences mSharedPrefs;
@@ -39,55 +42,50 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mTilUsername = findViewById(R.id.tilUsername);
-        mTilPassword = findViewById(R.id.tilPassword);
-        mBtnLogin = findViewById(R.id.btnLogin);
+        ButterKnife.bind(this);
 
         mGitHubAPI = GitHubAPI.RETROFIT.create(GitHubAPI.class);
         mSharedPrefs = getSharedPreferences(getString(R.string.app_shared_prefs), MODE_PRIVATE);
         mContext = this;
+    }
 
-        mBtnLogin.setOnClickListener(new View.OnClickListener() {
+    @OnClick(R.id.btnLogin)
+    public void login(final View view){
+        //on click action
+        final String authHeader = Credentials.basic(mTilUsername.getEditText().getText().toString(), mTilPassword.getEditText().getText().toString());
+
+        Call call = mGitHubAPI.login(authHeader);
+        //Log.d(TAG, call.toString());
+
+        mGitHubAPI.login(authHeader).enqueue(new Callback<User>() {
             @Override
-            public void onClick(final View view) {
-                //on click action
-                final String authHeader = Credentials.basic(mTilUsername.getEditText().getText().toString(), mTilPassword.getEditText().getText().toString());
+            public void onResponse(Call<User> call, Response<User> response) {
+                if(response.isSuccessful()){
 
-                Call call = mGitHubAPI.login(authHeader);
-                //Log.d(TAG, call.toString());
+                    //armazenar no shared prefs
+                    mSharedPrefs.edit().putString(getString(R.string.app_shared_prefs_auth), authHeader).apply();
 
-                mGitHubAPI.login(authHeader).enqueue(new Callback<User>() {
-                    @Override
-                    public void onResponse(Call<User> call, Response<User> response) {
-                        if(response.isSuccessful()){
+                    //new intent
+                    Intent intent = new Intent(mContext, FollowersListActivity.class);
+                    startActivity(intent);
 
-                            //armazenar no shared prefs
-                            mSharedPrefs.edit().putString(getString(R.string.app_shared_prefs_auth), authHeader).apply();
-
-                            //new intent
-                            Intent intent = new Intent(mContext, FollowersListActivity.class);
-                            startActivity(intent);
-
-                        } else {
-                            try {
-                                String error = response.errorBody().string();
-                                Snackbar.make(view, error, Snackbar.LENGTH_LONG).show();
-                            } catch (IOException e) {
-                                Log.e(TAG, e.getMessage(), e);
-                            }
-                        }
-
-                        Log.d(TAG, call.request().toString());
-                        Log.d(TAG, response.raw().toString());
+                } else {
+                    try {
+                        String error = response.errorBody().string();
+                        Snackbar.make(view, error, Snackbar.LENGTH_LONG).show();
+                    } catch (IOException e) {
+                        Log.e(TAG, e.getMessage(), e);
                     }
+                }
 
-                    @Override
-                    public void onFailure(Call<User> call, Throwable t) {
-                        Snackbar.make(view, t.getMessage(), Snackbar.LENGTH_LONG).show();
-                    }
-                });
+                Log.d(TAG, call.request().toString());
+                Log.d(TAG, response.raw().toString());
+            }
+
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
+                Snackbar.make(view, t.getMessage(), Snackbar.LENGTH_LONG).show();
             }
         });
-
     }
 }
