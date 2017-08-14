@@ -4,4 +4,6 @@
     <string name="txt_hint_username">Username</string>
     <string name="txt_btn_login">login</string>
     <string name="app_shared_prefs">sidarta.myapplication.APP_SHARED_PREFS</string>
+    <string name="app_shared_prefs_auth">auth</string>
+    <string name="avatar_description">User Profile Picture</string>
 </resources>

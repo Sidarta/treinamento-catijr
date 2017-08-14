@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
                         if(response.isSuccessful()){
 
                             //armazenar no shared prefs
-                            mSharedPrefs.edit().putString("auth", authHeader).apply();
+                            mSharedPrefs.edit().putString(getString(R.string.app_shared_prefs_auth), authHeader).apply();
 
                             //new intent
                             Intent intent = new Intent(mContext, FollowersListActivity.class);
