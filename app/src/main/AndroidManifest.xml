@@ -15,11 +15,18 @@
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
+
+                <!-- OAuth Intent Filters -->
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:host="@string/oauth_host" android:scheme="@string/oauth_schema" />
+                <!---->
+
             </intent-filter>
         </activity>
-        <activity android:name=".FollowersListActivity"></activity>
+        <activity android:name=".FollowersListActivity"/>
     </application>
 
 </manifest>

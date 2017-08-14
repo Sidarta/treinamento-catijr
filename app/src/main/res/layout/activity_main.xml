@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
+    android:layout_margin="16dp"
     tools:context="com.example.sidarta.myapplication.MainActivity">
         
     <android.support.v7.widget.AppCompatImageView
@@ -45,6 +46,13 @@
         android:layout_height="50dp"
         android:text="@string/txt_btn_login"
         android:id="@+id/btnLogin"
+        />
+
+    <android.support.v7.widget.AppCompatButton
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="@string/txt_btn_oauth"
+        android:id="@+id/btnOAuth"
         />
 
 </android.support.v7.widget.LinearLayoutCompat>

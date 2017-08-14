@@ -6,4 +6,13 @@
     <string name="app_shared_prefs">sidarta.myapplication.APP_SHARED_PREFS</string>
     <string name="app_shared_prefs_auth">auth</string>
     <string name="avatar_description">User Profile Picture</string>
+    <string name="txt_call_phone">Call Support</string>
+
+
+    <!--oauth keys-->
+    <string name="oauth_client_id">2d69e4831b9d8ba5f0a6</string>
+    <string name="oauth_client_secret">4dbb1db3f4f19b09e15c6e099d65a44349c906fa</string>
+    <string name="oauth_host">sidarnet.curso.io</string>
+    <string name="oauth_schema">http</string>
+    <string name="txt_btn_oauth">OAuth login</string>
 </resources>
