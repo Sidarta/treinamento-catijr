@@ -2,7 +2,6 @@ package com.example.sidarta.myapplication.adapter;
 
 import android.content.Context;
 import android.net.Uri;
-import android.support.v4.widget.ImageViewCompat;
 import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -14,7 +13,6 @@ import com.example.sidarta.myapplication.R;
 import com.example.sidarta.myapplication.domain.model.User;
 import com.squareup.picasso.Picasso;
 
-import java.net.URI;
 import java.util.List;
 
 /**
@@ -78,8 +76,8 @@ public class FollowersListAdapter extends RecyclerView.Adapter<FollowersListAdap
 
         ViewHolder(View v) {
             super(v);
-            mFollowerName = v.findViewById(R.id.tvFollowerName);
-            mAvatarPhoto = v.findViewById(R.id.ivAvatarPhoto);
+            mFollowerName = (TextView) v.findViewById(R.id.tvFollowerName);
+            mAvatarPhoto = (AppCompatImageView) v.findViewById(R.id.ivAvatarPhoto);
         }
     }
 }
