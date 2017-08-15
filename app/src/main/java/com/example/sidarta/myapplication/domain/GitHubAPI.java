@@ -25,7 +25,7 @@ public interface GitHubAPI {
     Call<User> login(@Header("Authorization") String credential);
 
     @GET("/user/followers")
-   Call<List<User>> listFollowers(@Header("Authorization") String credential);
+    Call<List<User>> listFollowers(@Header("Authorization") String credential);
 }
 
 
