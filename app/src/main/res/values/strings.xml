@@ -6,4 +6,5 @@
     <string name="app_shared_prefs">sidarta.myapplication.APP_SHARED_PREFS</string>
     <string name="app_shared_prefs_auth">auth</string>
     <string name="avatar_description">User Profile Picture</string>
+    <string name="default_shared_prefs_string"></string>
 </resources>

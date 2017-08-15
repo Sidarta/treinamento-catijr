@@ -47,7 +47,7 @@ public class FollowersListActivity extends AppCompatActivity {
 
         //get shared prefs to get auth header
         mSharedPrefs = getSharedPreferences(getString(R.string.app_shared_prefs), MODE_PRIVATE);
-        String authHeader = mSharedPrefs.getString(getString(R.string.app_shared_prefs_auth), "default");
+        String authHeader = mSharedPrefs.getString(getString(R.string.app_shared_prefs_auth), getString(R.string.default_shared_prefs_string));
 
         //get the dataset before adding the adapter
         mGitHubAPI.listFollowers(authHeader).enqueue(new Callback<List<User>>() {
